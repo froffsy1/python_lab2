@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div>
+    <a href="{{ url_for('login') }}" style="display:inline-block; padding:10px 18px;
+   background:#292929; color:white; text-decoration:none;
+   border-radius:6px;">Служебный вход</a>
+    </div>
+    <title>Security Lab — Каталог товаров</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 30px;
+            color: #222;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .search {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(220px, 1fr)
+            );
+            gap: 20px;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .product {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #00000012;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Security Lab — Каталог товаров</h1>
+
+    <form class="search" method="GET" action="/">
+        <input
+            type="text"
+            name="q"
+            placeholder="Введите название товара"
+            value="{{ search }}"
+        >
+
+        <button type="submit">Найти</button>
+        <a href="/">Сбросить</a>
+    </form>
+
+    <p style="text-align: center; font-size: 18px;">
+        Вы искали: {{ search|safe }}
+    </p>
+
+    <div class="catalog">
+        {% for product in products %}
+            <div class="product">
+                <h2>{{ product.name }}</h2>
+
+                <p>{{ product.description }}</p>
+
+                <p>ID товара: {{ product.id }}</p>
+
+                <p class="price">
+                    {{ product.price }} ₽
+                </p>
+            </div>
+        {% else %}
+            <p>Товары не найдены.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
