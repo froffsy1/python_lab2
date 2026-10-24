@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход администратора</title>
+</head>
+<body>
+    <h1>Вход администратора</h1>
+
+    <p>{{ message }}</p>
+
+    <form method="POST">
+        <label for="username">Логин:</label>
+        <input id="username" name="username" required>
+
+        <br><br>
+
+        <label for="password">Пароль:</label>
+        <input
+            id="password"
+            name="password"
+            type="password"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">Войти</button>
+    </form>
+
+    <p><a href="/">Вернуться в каталог</a></p>
+</body>
+</html>
