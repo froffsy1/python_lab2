@@ -128,15 +128,6 @@ def login():
         username = request.form.get("username","")
         password = request.form.get("password","")
         connection=get_connection()
-        #безопасный ввод
-        '''user=connection.execute("""
-            SELECT id, username
-            FROM users
-            WHERE username = ? AND password = ?
-            """,
-            (username,password)
-        ).fetchone()'''
-        #опасный ввод
         query = (
             "SELECT id, username FROM users WHERE username = '"
             + username
