@@ -128,6 +128,8 @@ def login():
         username = request.form.get("username","")
         password = request.form.get("password","")
         connection=get_connection()
+
+        #Опасный способ
         query = (
             "SELECT id, username FROM users WHERE username = '"
             + username
@@ -135,6 +137,15 @@ def login():
             + password
             + "'"
         )
+
+        #Безопасный способ
+        '''user=connection.execute("""
+            SELECT id, username
+            FROM users
+            WHERE username = ? AND password = ?
+            """,
+            (username,password)
+        ).fetchone()'''
 
         user = connection.execute(query).fetchone()
         connection.close()
