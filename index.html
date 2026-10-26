@@ -72,10 +72,15 @@
         <button type="submit">Найти</button>
         <a href="/">Сбросить</a>
     </form>
-
+    <!--Опасный способ-->
     <p style="text-align: center; font-size: 18px;">
         Вы искали: {{ search|safe }}
     </p>
+    <!--Безопасный способ
+    <p style="text-align: center; font-size: 18px;"></p>
+        Вы искали: {{ search }}
+    </p>
+    -->
 
     <div class="catalog">
         {% for product in products %}
